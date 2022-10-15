@@ -1,0 +1,47 @@
+yum install docker -y
+docker --version 
+which docker
+service docker start 
+systemctl enable docker
+docker run -it --name nameofcontainer nameofimage /bin/bash
+docker run -dt --name nameofcontainer nameofimage /bin/bash
+docker ps
+docker ps -a
+docker images 
+docker rm containername/id
+docker rmi imagename
+docker search name
+docker pull imagename
+docker rename containeroldname containernewname
+docker tag imageoldname imagenewname
+docker start containername
+docker attach containername
+docker stop containername
+docker commit nameofcontainer nameofimage
+Dockerfile: FROM   (give the name of operating system here)
+            RUN    you can run any linux command related to packages
+            CMD    here also you can run any linux command but preference will be given to run time commands
+            ENV    variable will be replaced by the value in the machine
+            COPY   src  dest
+            ADD    adds files in the container by removing tar and zip
+            WORKDIR  you will be in this directory of the container after executing the image
+docker build -t nameofimage .   (if the docker file is named as Dockerfile and if it is in the present location)
+docker build -t nameofimage . -f nameofdockerfile (if docker file is named with a different name)
+tar -cvf nameoffile
+gzip file.tar
+we need to untar and then unzip for that command is tar -zxvf nameoffile
+declaring volume in Dockerfile VOLUME ["path of volume"]
+docker run -it --name nameofcontainer --privileged=true --volumes-from nameofcontainer nameofimage /bin/bash
+docker run -it --name nameofcontainer -v pathofvolume nameofimage /bin/bash
+docker run -it --name nameofcontainer -v pathofbase:pathincontainer --privileged=true imagename /bin/bash
+docker run -it --name nameofcontainer -p portofbase:portofcont nameofimage /bin/bash
+docker port containername (to see engaged port)
+docker inspect containername
+docker login
+docker tag nameofimage user/namespace
+docker push user/namespace
+docker pull user/namespace
+docker logout
+docker rmi $(docker images -q)
+docker stop $(docker ps -q)
+docker rm $(docker ps -a -q)
